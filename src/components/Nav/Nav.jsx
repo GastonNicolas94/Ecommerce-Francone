@@ -1,7 +1,8 @@
 
 import Nav from 'react-bootstrap/Nav'
 import Navdropdown from '../NavDropdown/NavDropdown'
-import {BsFillCartFill} from "react-icons/bs";
+import Widget from '../Widget/Widget'
+
 
 const NavMenu = ({items, links}) => {
 
@@ -25,7 +26,7 @@ const NavMenu = ({items, links}) => {
           </Nav>
           <Nav>
               <Nav.Link eventKey={2} href="#memes">
-                  <BsFillCartFill />
+                < Widget />
               </Nav.Link>
           </Nav>
       </>

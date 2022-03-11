@@ -8,17 +8,20 @@ const NavBar = () => {
     const categories = ['FUTBOL','BASQUET','RUGBY','CROSSFIT','RUNNING','GIMNASIO']
     const links = ['REMERAS','CALZAS','GUANTES','SHORTS','TODOS LOS PRODUCTOS']
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Container>
-            <Navbar.Brand href="#home">
-                <img className='logo' src={logo}/>
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse id="responsive-navbar-nav">
-                < NavMenu items = {categories} links={links}/>
-            </Navbar.Collapse>
-        </Container>
-    </Navbar>
+      <>
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Container>
+                <Navbar.Brand href="#home">
+                    <img className='logo' src={logo}/>
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    < NavMenu items = {categories} links={links}/>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
+      </>
+
   )
 }
 

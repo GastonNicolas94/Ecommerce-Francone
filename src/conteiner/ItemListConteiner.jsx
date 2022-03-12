@@ -45,7 +45,7 @@ const ItemListConteiner = ({ greeting }) => {
     .then((result) => {
       const itemsCardList = result.map((product) => 
         (
-          <ItemCount stock={product.stock} initial={product.initial} name={product.name}/>
+          <ItemCount key={product.id} stock={product.stock} initial={product.initial} name={product.name}/>
         )
       )
       return itemsCardList

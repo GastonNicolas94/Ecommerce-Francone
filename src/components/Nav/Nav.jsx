@@ -2,6 +2,7 @@
 import Nav from 'react-bootstrap/Nav'
 import Navdropdown from '../NavDropdown/NavDropdown'
 import Widget from '../Widget/Widget'
+import { NavLink } from 'react-router-dom'
 
 
 const NavMenu = ({items, links}) => {
@@ -10,7 +11,7 @@ const NavMenu = ({items, links}) => {
         
         const listNavLinks = links.map((link) => 
         (
-            <Nav.Link href='#' key={link} >{link.toUpperCase()}</Nav.Link>
+            <NavLink to={"category/" + link} key={link} >{link.toUpperCase()}</NavLink>
         ))
 
         return (

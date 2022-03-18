@@ -65,7 +65,7 @@ const ItemCount = ({stock, initial, name}) => {
                         <Button variant="outline-secondary" onClick={handlerSubstractStock} disabled={disabledSubstract}>
                             <BsDashLg/>
                         </Button>
-                        <FormControl aria-label="Example text with two button addons" value={buy}/>
+                        <FormControl aria-label="Example text with two button addons" defaultValue={buy}/>
                         <Button variant="outline-secondary" onClick={handlerAddStock} disabled={disabledAdd}>
                             <BsPlusLg/>  
                         </Button>

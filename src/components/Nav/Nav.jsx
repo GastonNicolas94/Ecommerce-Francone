@@ -11,7 +11,7 @@ const NavMenu = ({items, links}) => {
         
         const listNavLinks = links.map((link) => 
         (
-            <NavLink to={"category/" + link} key={link} >{link.toUpperCase()}</NavLink>
+            <NavLink to={`/category/${link}`} key={link} >{link}</NavLink>
         ))
 
         return (
@@ -26,9 +26,9 @@ const NavMenu = ({items, links}) => {
                 <ItemsNavLink links={links}/>
           </Nav>
           <Nav>
-              <Nav.Link eventKey={2} href="#memes">
+              <NavLink to='cart'>
                 < Widget />
-              </Nav.Link>
+              </NavLink>
           </Nav>
       </>
 

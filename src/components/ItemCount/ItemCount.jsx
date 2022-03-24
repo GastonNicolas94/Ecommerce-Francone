@@ -1,12 +1,13 @@
 import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button'
 import FormControl from 'react-bootstrap/FormControl'
-import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import {BsPlusLg, BsDashLg} from 'react-icons/bs'
 import {useState, useEffect} from 'react'
 
 const ItemCount = ({stock, initial, name}) => {
+
+    console.log(`${stock} ${initial} ${name}`)
     
     const [buy, setBuy] = useState(initial)
 
@@ -57,7 +58,6 @@ const ItemCount = ({stock, initial, name}) => {
 
     return (
         <>
-        <Col>
             <Card border="primary" style={{ width: '18rem' }}>
                 <Card.Header>{name}</Card.Header>
                 <Card.Body>
@@ -65,7 +65,7 @@ const ItemCount = ({stock, initial, name}) => {
                         <Button variant="outline-secondary" onClick={handlerSubstractStock} disabled={disabledSubstract}>
                             <BsDashLg/>
                         </Button>
-                        <FormControl aria-label="Example text with two button addons" defaultValue={buy}/>
+                        <FormControl value={buy} onChange = {(event) => this.setState({value: event.target.value })}/>
                         <Button variant="outline-secondary" onClick={handlerAddStock} disabled={disabledAdd}>
                             <BsPlusLg/>  
                         </Button>
@@ -74,8 +74,7 @@ const ItemCount = ({stock, initial, name}) => {
                         <Button variant='outline-primary' size='lg'>Agregar al carrito</Button>
                     </div>
                 </Card.Body>
-            </Card>
-        </Col>  
+            </Card> 
         </>
 
     )

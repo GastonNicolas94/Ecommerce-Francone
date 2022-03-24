@@ -1,42 +1,31 @@
 import ItemCount from '../components/ItemCount/ItemCount'
 import Spinner from '../components/Spinner/Spinner'
-import Row from 'react-bootstrap/Row'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { task } from '../helpers/gFetch'
+import ItemList from '../components/ItemList/ItemList'
 const ItemListConteiner = ({ greeting }) => {
   
   const [loading, setLoading] = useState(true)
-  const [productListCard, setProductListCard] = useState([])
+  const [products, setProductListCard] = useState([])
   const {id} = useParams()
 
-  const handlerLoading = () => {
-    setLoading(!loading)
-  }
-
   useEffect(()=>{
-      task
-      .then((result) => {
-        const itemsCardList = result.map((product) => 
-          (
-            <ItemCount key={product.id} stock={product.stock} initial={product.initial} name={product.name}/>
-          )
-        )
-        return itemsCardList
-      })
-      .then((list)=>{
-        setProductListCard(list)
-        handlerLoading()
-      })
-      .catch((err) => {
-        console.log(err)
-        return err
-      })
-      .finally(
-        
-      )
 
-  },[])
+    if(id){
+      task 
+      .then(resp => setProductListCard(resp.filter(prod=> prod.category === id)))
+      .catch(err => console.log(err))
+      .finally(()=> setLoading(false))
+
+    }else {
+      task 
+      .then(resp => setProductListCard(resp))
+      .catch(err => console.log(err))
+      .finally(()=> setLoading(false))
+    }
+
+  },[id])
 
   return (
     <>
@@ -45,10 +34,9 @@ const ItemListConteiner = ({ greeting }) => {
         loading ? 
           <Spinner />
         :
-        <Row xs={3} md={3} className="g-4">
-          {productListCard}
-        </Row>  
+        <ItemList products={products}/>
       }
+      <ItemCount stock={10} initial={2} name='Gaston'/>
     </>
     
   )

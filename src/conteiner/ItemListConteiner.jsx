@@ -36,7 +36,6 @@ const ItemListConteiner = ({ greeting }) => {
         :
         <ItemList products={products}/>
       }
-      <ItemCount stock={10} initial={2} name='Gaston'/>
     </>
     
   )

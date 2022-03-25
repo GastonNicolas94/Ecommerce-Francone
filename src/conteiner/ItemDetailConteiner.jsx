@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { task, getFech } from "../helpers/gFetch"
+import { getFech } from "../helpers/gFetch"
 import { useParams } from "react-router-dom"
 import ItemDetail from '../components/ItemDetail/ItemDetail'
 
@@ -13,7 +13,6 @@ const ItemDetailConteiner = () => {
 
         getFech
         .then((result) => setProduct(result.find(item => item.id === detailId)))
-        .then(() => console.log(product))
         .catch(err => console.log(err))
 
     },[detailId])

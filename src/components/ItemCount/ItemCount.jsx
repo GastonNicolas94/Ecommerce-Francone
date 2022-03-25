@@ -5,10 +5,8 @@ import Card from 'react-bootstrap/Card'
 import {BsPlusLg, BsDashLg} from 'react-icons/bs'
 import {useState, useEffect} from 'react'
 
-const ItemCount = ({stock, initial, name}) => {
+const ItemCount = ({stock, initial, onAdd}) => {
 
-    console.log(`${stock} ${initial} ${name}`)
-    
     const [buy, setBuy] = useState(initial)
 
     const [disabledSubstract, setDisableSubstract] = useState(false)
@@ -50,28 +48,27 @@ const ItemCount = ({stock, initial, name}) => {
 
     useEffect(() => {
 
-        (initial == stock) ? setDisabledAdd(true):setDisabledAdd(false);
+        (initial === stock) ? setDisabledAdd(true):setDisabledAdd(false);
         
-        (stock == 0 || initial == 0) ? setDisableSubstract(true):setDisableSubstract(false);
+        (stock === 0 || initial === 0) ? setDisableSubstract(true):setDisableSubstract(false);
     
     },[])
 
     return (
         <>
             <Card border="primary" style={{ width: '18rem' }}>
-                <Card.Header>{name}</Card.Header>
                 <Card.Body>
                     <InputGroup className="mb-3">
                         <Button variant="outline-secondary" onClick={handlerSubstractStock} disabled={disabledSubstract}>
                             <BsDashLg/>
                         </Button>
-                        <FormControl value={buy} onChange = {(event) => this.setState({value: event.target.value })}/>
+                        <FormControl value={`${buy}`} onChange = {(event) => this.setState({value: event.target.value })}/>
                         <Button variant="outline-secondary" onClick={handlerAddStock} disabled={disabledAdd}>
                             <BsPlusLg/>  
                         </Button>
                     </InputGroup>
                     <div className='d-grid gap-2'>
-                        <Button variant='outline-primary' size='lg'>Agregar al carrito</Button>
+                        <Button variant='outline-primary' size='lg' onClick={() => onAdd({buy})}>Agregar al carrito</Button>
                     </div>
                 </Card.Body>
             </Card> 

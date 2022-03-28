@@ -5,6 +5,7 @@ import ItemDetailConteiner from './conteiner/ItemDetailConteiner'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Cart from './components/Cart/Cart'
+import CartContextProvider from './context/CartContext';
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
   
   <BrowserRouter>
       <div className="App">
+        <CartContextProvider>
           < NavBar />
           <Routes>
           
@@ -26,6 +28,7 @@ function App() {
             {/* <Route path='/*' element={<Navigate to='ruta donde tiene que ir'/>}/> path='/*'(Cualquier ruta que no este definida aca)  */}
           
           </Routes>
+        </CartContextProvider>
         </div>
   </BrowserRouter>
   );

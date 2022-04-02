@@ -1,8 +1,13 @@
 import { useState } from 'react'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/esm/Button'
+import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 import { useCartContext } from '../../context/CartContext'
 import ItemCount from '../ItemCount/ItemCount'
+import '../ItemDetail/ItemDetail.css'
 
 const InputCount = () => {
 
@@ -44,21 +49,33 @@ const ItemDetail = ({product}) => {
 
   return (
     <>
-      <div>
-        <center>
-          <h3>{product.name}</h3>
-          <p>{product.price}</p>
-          <p>{product.category}</p>
-          <p>{product.sport}</p>
-          {
-            (inputType === 'button') ?
-              <ItemCount stock={25} initial={5} onAdd={onAdd}/>
-        
-            :
-              <InputCount />
-          }
-        </center>
-      </div>
+      <Container className='container-product'>
+        <Row>
+          <Col>
+            <img className='zoom border' src={product.img}/>
+          </Col>
+          <Col>
+            <Card className="cart">
+              <Card.Body>
+                <Card.Title>{`${product.name} - ${product.category}`}</Card.Title>
+                <Card.Text><h3>{`$ ${product.price}`}</h3></Card.Text>
+                <Card.Text><h3>This is a longer card with supporting text below as a natural
+                          lead-in to additional content. This content is a little bit longer.</h3></Card.Text>
+              </Card.Body>
+              <Card.Footer>
+                {
+                  (inputType === 'button') ?
+                    <ItemCount stock={25} initial={5} onAdd={onAdd}/>
+              
+                  :
+                    <InputCount />
+                }
+              </Card.Footer>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
+      
     </>
   )
 }

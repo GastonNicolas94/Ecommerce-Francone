@@ -1,4 +1,4 @@
-import ItemCount from '../components/ItemCount/ItemCount'
+import Row from 'react-bootstrap/Row'
 import Spinner from '../components/Spinner/Spinner'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
@@ -34,7 +34,10 @@ const ItemListConteiner = ({ greeting }) => {
         loading ? 
           <Spinner />
         :
-        <ItemList products={products}/>
+        <Row xs={1} md={3} className="g-4">
+          <ItemList products={products}/>
+        </Row>
+
       }
     </>
     

@@ -34,11 +34,13 @@ const CartContextProvider = ({children}) => {
 
     const removeFromCart = (item) => {
 
-        let index = cartList.findIndex(x => x.id === item.id);
+        console.log(item)
+        
+        let cartListFiltered = cartList.filter(prod => prod.id !== item.id)
 
-        cartList.splice(index,1)
+        console.log(cartListFiltered)
 
-        setItemCart(cartList)
+        setItemCart(cartListFiltered)
 
     }
 
@@ -46,6 +48,12 @@ const CartContextProvider = ({children}) => {
 
         setItemCart([])
 
+    }
+
+    const totalItems = () => {
+
+        return cartList.reduce((total, item) => {return total + item.buy},0)
+    
     }
 
     const amount = () => {
@@ -60,7 +68,8 @@ return (
         addToCart,
         removeFromCart,
         clear,
-        amount
+        amount,
+        totalItems
     }}>
         {children}
     </CartContext.Provider>

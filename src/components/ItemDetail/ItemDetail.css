@@ -1,0 +1,19 @@
+img{
+    height: 100%;
+    width: 100%;
+}
+.cart{
+    height: 100%;
+}
+.container-product{
+    margin: 5%;
+}
+
+.zoom {
+    transition: transform .2s; 
+}
+ 
+.zoom:hover {
+    transform: scale(1.5); 
+}
+

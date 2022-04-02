@@ -56,22 +56,18 @@ const ItemCount = ({stock, initial, onAdd}) => {
 
     return (
         <>
-            <Card border="primary" style={{ width: '18rem' }}>
-                <Card.Body>
-                    <InputGroup className="mb-3">
-                        <Button variant="outline-secondary" onClick={handlerSubstractStock} disabled={disabledSubstract}>
-                            <BsDashLg/>
-                        </Button>
-                        <FormControl value={`${buy}`} onChange = {(event) => this.setState({value: event.target.value })}/>
-                        <Button variant="outline-secondary" onClick={handlerAddStock} disabled={disabledAdd}>
-                            <BsPlusLg/>  
-                        </Button>
-                    </InputGroup>
-                    <div className='d-grid gap-2'>
-                        <Button variant='outline-primary' size='lg' onClick={() => onAdd({buy})}>Agregar al carrito</Button>
-                    </div>
-                </Card.Body>
-            </Card> 
+            <InputGroup className="mb-3">
+                <Button variant="outline-secondary" onClick={handlerSubstractStock} disabled={disabledSubstract}>
+                    <BsDashLg/>
+                </Button>
+                <FormControl value={`${buy}`} onChange = {(event) => this.setState({value: event.target.value })}/>
+                <Button variant="outline-secondary" onClick={handlerAddStock} disabled={disabledAdd}>
+                    <BsPlusLg/>  
+                </Button>
+            </InputGroup>
+            <div className='d-grid gap-2'>
+                <Button variant='outline-primary' size='lg' onClick={() => onAdd({buy})}>Agregar al carrito</Button>
+            </div>
         </>
 
     )

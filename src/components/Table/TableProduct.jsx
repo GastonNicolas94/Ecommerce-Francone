@@ -1,45 +1,39 @@
 import { useEffect, useState } from 'react'
+import Button from 'react-bootstrap/esm/Button'
 import Table from 'react-bootstrap/Table'
 import { useCartContext } from '../../context/CartContext'
-import Tbody from './Tbody'
 import Thead from './Thead'
+import './Table.css'
 
 
 const TableProduct = ({headers}) => {
 
-  const {cartList, removeFromCart, amount} = useCartContext()
-
-  const [anyProducts, setAnyProducts] =useState(false)
+  const {cartList, removeFromCart} = useCartContext()
 
   const onRemove = ({item}) => {
 
-    console.log(`ITEM QUE SE DESEA ELIMINAR ${item.id}`)
-
-    // removeFromCart({item})
+    removeFromCart(item)
 
   }
 
-  useEffect(() => {
-
-    (cartList.length > 0) ? setAnyProducts(true) : setAnyProducts(false)
-
-
-  },[cartList])
-
   return (
     <>
-      {
-        anyProducts ?
-
-          <Table striped bordered hover size="sm">
-            <Thead headers={headers}/>
-            <Tbody cartList={cartList} amount={amount} onRemove={onRemove}/>
-          </Table>
-        :
-          <h3>ESTAMOS ESPERANDO SU COMPRA</h3>
+      <Table striped bordered hover size="sm">
+        <Thead headers={headers}/>
+        <tbody>
+          {cartList.map((item, index) => 
+            <tr key={item.id}>
+                <td>{index}</td>
+                <td><img src={item.img} className="img-table-cart"/></td>
+                <td>{item.buy}</td>
+                <td>{`$ ${item.price}`}</td>
+                <td>{`$ ${item.price * item.buy}`}</td>
+                <td><Button variant='outline-danger' size='sm' onClick={() => onRemove({item})}>ELIMINAR</Button></td>
+            </tr>)
+          }
+        </tbody>
         
-      }
-    
+      </Table>
     </>
   )
 }

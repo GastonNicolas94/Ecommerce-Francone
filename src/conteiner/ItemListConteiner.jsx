@@ -2,30 +2,44 @@ import Row from 'react-bootstrap/Row'
 import Spinner from '../components/Spinner/Spinner'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { task } from '../helpers/gFetch'
 import ItemList from '../components/ItemList/ItemList'
+
+import { 
+  collection,    
+  getDocs, 
+  getFirestore,       
+  query, 
+  where 
+} from 'firebase/firestore'
+
+
+
 const ItemListConteiner = ({ greeting }) => {
   
   const [loading, setLoading] = useState(true)
   const [products, setProductListCard] = useState([])
   const {id} = useParams()
+   
+  
+  // traer productos filtrados por categorías
+  useEffect(()=> {
 
-  useEffect(()=>{
+    const db = getFirestore()    
 
-    if(id){
-      task 
-      .then(resp => setProductListCard(resp.filter(prod=> prod.category === id)))
-      .catch(err => console.log(err))
-      .finally(()=> setLoading(false))
+    const queryCollectionFinal =  !id 
+                          ? 
+                              collection(db, 'product' )
+                          :  
+                              query( collection(db, 'product' ), 
+                                  where('category','==', id)                                  
+                              )                             
 
-    }else {
-      task 
-      .then(resp => setProductListCard(resp))
-      .catch(err => console.log(err))
-      .finally(()=> setLoading(false))
-    }
-
-  },[id])
+    getDocs(queryCollectionFinal)
+    .then(resp => setProductListCard( resp.docs.map(producto =>( {id: producto.id, ...producto.data()}) ) ) )
+    .catch(err => console.log(err))
+    .finally(()=> setLoading(false))   
+      
+  }, [id])
 
   return (
     <>

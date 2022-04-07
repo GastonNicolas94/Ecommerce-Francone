@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react"
-import { getFech } from "../helpers/gFetch"
 import { useParams } from "react-router-dom"
 import ItemDetail from '../components/ItemDetail/ItemDetail'
+import {   
+    getDoc,
+    doc,
+    getFirestore,       
+  } from 'firebase/firestore'
 
 const ItemDetailConteiner = () => {
 
@@ -11,9 +15,14 @@ const ItemDetailConteiner = () => {
 
     useEffect(() => {
 
-        getFech
-        .then((result) => setProduct(result.find(item => item.id === detailId)))
+        const db = getFirestore()    
+
+        const queryCollectionFinal =  doc(db, 'product', detailId)
+        
+        getDoc(queryCollectionFinal)
+        .then(resp => setProduct({id: resp.id, ...resp.data()}))
         .catch(err => console.log(err))
+        .finally() 
 
     },[detailId])
 

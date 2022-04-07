@@ -1,7 +1,6 @@
 import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button'
 import FormControl from 'react-bootstrap/FormControl'
-import Card from 'react-bootstrap/Card'
 import {BsPlusLg, BsDashLg} from 'react-icons/bs'
 import {useState, useEffect} from 'react'
 
@@ -40,8 +39,8 @@ const ItemCount = ({stock, initial, onAdd}) => {
         }
 
 
-        (buy == 0) ? handlerSetDisabledSubtract(true):handlerSetDisabledSubtract(false);
-        (buy == stock) ? handlerSetDisabledAdd(true):handlerSetDisabledAdd(false);
+        (buy === 0) ? handlerSetDisabledSubtract(true):handlerSetDisabledSubtract(false);
+        (buy === stock) ? handlerSetDisabledAdd(true):handlerSetDisabledAdd(false);
 
         
     },[buy])

@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/esm/Button'
 import Table from 'react-bootstrap/Table'
 import { useCartContext } from '../../context/CartContext'

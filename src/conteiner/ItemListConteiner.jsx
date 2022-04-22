@@ -1,8 +1,10 @@
 import Row from 'react-bootstrap/Row'
+import Container from 'react-bootstrap/esm/Container'
 import Spinner from '../components/Spinner/Spinner'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import ItemList from '../components/ItemList/ItemList'
+import Typed from 'react-typed'
 
 import { 
   collection,    
@@ -43,16 +45,29 @@ const ItemListConteiner = ({ greeting }) => {
 
   return (
     <>
-      <div>{greeting}</div>
-      {
-        loading ? 
-          <Spinner />
-        :
-        <Row xs={1} md={3} className="g-4">
-          <ItemList products={products}/>
-        </Row>
-
-      }
+        <section id="inicio" className="d-flex align-items-center">
+          <div className="container d-flex flex-column justify-content-end">
+              <h1>Bienvenido</h1>
+              <h2>
+                  <Typed
+                      strings={['Disfruta de tu entrenamiento', 'Saca la bestia en vos!']}
+                      typeSpeed={50}
+                      backSpeed={100}
+                      loop
+                      />
+              </h2>
+          </div>
+        </section>
+        <Container style={{ textAlign: 'center' }}>
+          {
+            loading ? 
+              <Spinner />
+            :
+            <Row xs={1} md={3} className="g-4">
+              <ItemList products={products}/>
+            </Row>
+          }
+        </Container>
     </>
     
   )

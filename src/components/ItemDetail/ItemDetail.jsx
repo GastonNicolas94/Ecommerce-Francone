@@ -1,32 +1,26 @@
 import { useState } from 'react'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/esm/Button'
 import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 import { useCartContext } from '../../context/CartContext'
 import ItemCount from '../ItemCount/ItemCount'
-import '../ItemDetail/ItemDetail.css'
 
 const InputCount = () => {
 
   return(
     <>
-        <Link to='/cart'>
-          <Button
-            variant='outline-success'
-          >
-            TERMINAR MI COMPRA
-          </Button>
-        </Link>
-        <Link to='/'>
-          <Button 
-            variant='outline-success'
-          >
-            SEGUIR COMPRANDO
-          </Button>
-        </Link>
+        <div className='d-flex flex-column'>
+            <div className='pt-2'>
+                <Link to='/'>
+                    <Button className="btn btn-primary">SEGUIR COMPRANDO</Button>
+                </Link>
+            </div>
+            <div className='pt-2'>
+                <Link to='/cart'>
+                    <Button className="btn btn-secondary">FINALIZAR COMPRA</Button>
+                </Link>
+            </div>
+        </div>
     </>
     )
 
@@ -49,33 +43,34 @@ const ItemDetail = ({product}) => {
 
   return (
     <>
-      <Container className='container-product'>
-        <Row>
-          <Col>
-            <img className='zoom border' src={product.img}/>
-          </Col>
-          <Col>
-            <Card className="cart">
-              <Card.Body>
-                <Card.Title>{`${product.name} - ${product.category}`}</Card.Title>
-                <Card.Text><h3>{`$ ${product.price}`}</h3></Card.Text>
-                <Card.Text><h3>This is a longer card with supporting text below as a natural
-                          lead-in to additional content. This content is a little bit longer.</h3></Card.Text>
-              </Card.Body>
-              <Card.Footer>
-                {
-                  (inputType === 'button') ?
-                    <ItemCount stock={25} initial={5} onAdd={onAdd}/>
-              
-                  :
-                    <InputCount />
-                }
-              </Card.Footer>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
-      
+        <div className="row mb-5">
+            <div className="col">
+              <figure className={product.stock === 0 ? 'figure tag tag-out':''}>
+                <img width="350" height="300" src={`${product.img}`} alt="" />
+              </figure>
+            </div>
+            <div className="col">
+                <Card className='h-100 w-100'>
+                    <Card.Header>
+                        <strong><h3>{product.title}</h3></strong>
+                    </Card.Header>
+                    <Card.Body>
+                        <p>{product.category} - {product.name}</p>
+                        <h4>$ {product.price}</h4>
+                        <h6>Cantidad disponible: {product.stock}</h6>
+                    </Card.Body>
+                    <Card.Footer className="detail-container_buy">
+                      {
+                      (inputType === 'button') ?
+                        <ItemCount stock={product.stock} initial={1} onAdd={onAdd}/>
+                
+                      :
+                        <InputCount />
+                      }
+                    </Card.Footer>
+                </Card>
+            </div>
+        </div>
     </>
   )
 }

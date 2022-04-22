@@ -11,7 +11,7 @@ const NavBar = () => {
   return (
       <>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-            <Container>
+            <Container fluid>
                 <Link to='/'>
                     <Navbar.Brand>
                         <img className='logo' alt='' src={logo}/>

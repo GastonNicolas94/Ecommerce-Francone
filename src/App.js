@@ -6,30 +6,32 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Cart from './components/Cart/Cart'
 import CartContextProvider from './context/CartContext';
+import Footer from './components/Footer/Footer';
 
 function App() {
 
   return (
   
   <BrowserRouter>
+    <CartContextProvider>
+      < NavBar />
       <div className="App">
-        <CartContextProvider>
-          < NavBar />
-          <Routes>
+        <Routes>
           
-            <Route path='/' element={<ItemListConteiner greeting="HOLA SOY ITEM LIST CONTEINER"/>} />
+          <Route path='/' element={<ItemListConteiner greeting="HOLA SOY ITEM LIST CONTEINER"/>} />
             
-            <Route path='/category/:id' element={<ItemListConteiner greeting="HOLA SOY ITEM LIST CONTEINER"/>} />
+          <Route path='/category/:id' element={<ItemListConteiner greeting="HOLA SOY ITEM LIST CONTEINER"/>} />
             
-            <Route path='/detail/:detailId' element={<ItemDetailConteiner/>}/>
+          <Route path='/detail/:detailId' element={<ItemDetailConteiner/>}/>
 
-            <Route path='/cart' element={<Cart />}/>
+          <Route path='/cart' element={<Cart />}/>
             
-            {/* <Route path='/*' element={<Navigate to='ruta donde tiene que ir'/>}/> path='/*'(Cualquier ruta que no este definida aca)  */}
+          {/* <Route path='/*' element={<Navigate to='ruta donde tiene que ir'/>}/> path='/*'(Cualquier ruta que no este definida aca)  */}
           
-          </Routes>
-        </CartContextProvider>
-        </div>
+        </Routes>
+      </div>
+      <Footer />
+    </CartContextProvider>
   </BrowserRouter>
   );
 }
